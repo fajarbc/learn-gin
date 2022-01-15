@@ -1,0 +1,28 @@
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /css/*filepath            --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (1 handlers)
+[GIN-debug] HEAD   /css/*filepath            --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (1 handlers)
+[GIN-debug] Loaded HTML Templates (4): 
+	- 
+	- footer.html
+	- header.html
+	- index.html
+
+[GIN-debug] POST   /login/                   --> main.main.func1 (3 handlers)
+[GIN-debug] GET    /api/videos               --> main.main.func2 (4 handlers)
+[GIN-debug] POST   /api/videos               --> main.main.func3 (4 handlers)
+[GIN-debug] GET    /view/videos              --> github.com/fajarbc/learn-gin/controller.VideoController.ShowAll-fm (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Environment variable PORT is undefined. Using port :8080 by default
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN-debug] [WARNING] Headers were already written. Wanted to override status code 400 with 500
+[GIN-debug] [WARNING] Headers were already written. Wanted to override status code 400 with 500
+[GIN-debug] redirecting request 307: /login/ --> /login/
+[GIN] 2022/01/16 - 03:27:02 | 200 |      3.1465ms |             ::1 | POST     "/login/"
+[GIN] 2022/01/16 - 03:27:07 | 200 |      2.5065ms |             ::1 | GET      "/api/videos"
+[GIN] 2022/01/16 - 03:27:18 | 200 |      3.9014ms |             ::1 | POST     "/api/videos"
+[GIN] 2022/01/16 - 03:27:21 | 200 |      1.8109ms |             ::1 | GET      "/api/videos"
+[GIN] 2022/01/16 - 03:27:28 | 200 |      3.7095ms |             ::1 | GET      "/view/videos"
