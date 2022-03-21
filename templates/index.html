@@ -3,8 +3,8 @@
 <div class="album mb-4 py-4 bg-light">
     <div class="container">
         <div class="row">
-            <!-- loop videos -->
-            {{range .videos}}
+            <!-- loop articles -->
+            {{range .articles}}
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
@@ -18,11 +18,11 @@
                           </figure>
                         <div class="card-text mt-2">
                             <div class="text-muted fst-italic text-break">
-                                {{.Description }}
+                                {{.Content }}
                             </div>
                             <dl class="row mt-2">
-                                <dt class="col-12 col-md-3">URL</dt>
-                                <dd class="col-12 col-md-9">: {{.URL}}</dd>
+                                <dt class="col-12 col-md-3">Slug</dt>
+                                <dd class="col-12 col-md-9">: {{.Slug}}</dd>
                             </dl>
                         </div>
                     </div>

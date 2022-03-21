@@ -4,6 +4,22 @@ Learning golang framework gin.
 Focus only on build api (no database connection).
 There is nothing in http://localhost:8080 yet, but you can do Login and Save/Get Videos using these endpoints here with Postman https://www.getpostman.com/collections/e66fcfef85e70524e3ac
 
+## Endpoint examples 
+An example of `POST` request to save new Article with its Author to http://localhost:8080/api/articles 
+```json
+{
+    "title": "First Post Title",
+    "content": "Lorem ipsum this is article content",
+    "slug": "post-1",
+    "status": 1,
+    "author": {
+        "name": "John Doe",
+        "email": "john.doe@gmail.com",
+        "status": 1
+    }
+}
+```
+Make sure you are already authenticated, otherwise it will respond with 400.
 
 # install
 Before you could run the app, first install/downloads the dependecies first.

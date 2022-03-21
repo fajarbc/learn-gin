@@ -1,28 +1,30 @@
 package controller
 
 import (
+	"log"
 	"net/http"
 
-	"github.com/fajarbc/learn-gin/entity"
+	"github.com/fajarbc/learn-gin/models"
 	"github.com/fajarbc/learn-gin/service"
 	"github.com/fajarbc/learn-gin/validators"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 )
 
-type VideoController interface {
-	FindAll() []entity.Video
+type ArticleController interface {
+	FindAll(ctx *gin.Context) []models.Article
 	Save(ctx *gin.Context) error
 	ShowAll(ctx *gin.Context)
 }
 
 type controller struct {
-	service service.VideoService
+	service service.ArticleService
 }
 
 var validate *validator.Validate
 
-func New(service service.VideoService) VideoController {
+// belum tau untuk apa
+func New(service service.ArticleService) ArticleController {
 	validate = validator.New()
 	validate.RegisterValidation("has-space", validators.ValidateHasSpace)
 	return &controller{
@@ -30,29 +32,30 @@ func New(service service.VideoService) VideoController {
 	}
 }
 
-func (c *controller) FindAll() []entity.Video {
-	return c.service.FindAll()
+func (c *controller) FindAll(ctx *gin.Context) []models.Article {
+	return c.service.FindAll(ctx)
 }
 
 func (c *controller) Save(ctx *gin.Context) error {
-	var video entity.Video
-	err := ctx.ShouldBindJSON(&video)
+	var article models.Article
+	err := ctx.ShouldBindJSON(&article)
 	if err != nil {
 		return err
 	}
-	err = validate.Struct(video)
+	err = validate.Struct(article)
 	if err != nil {
 		return err
 	}
-	c.service.Save(video)
+	c.service.Save(ctx, article)
 	return nil
 }
 
 func (c *controller) ShowAll(ctx *gin.Context) {
-	videos := c.service.FindAll()
+	articles := c.service.FindAll(ctx)
+	log.Println(articles)
 	data := gin.H{
-		"title":  "Video Page",
-		"videos": videos,
+		"title":    "Article Page",
+		"articles": articles,
 	}
 
 	ctx.HTML(http.StatusOK, "index.html", data)
