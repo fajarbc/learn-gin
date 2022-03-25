@@ -3,9 +3,17 @@ package routes
 import (
 	"net/http"
 
+	"github.com/fajarbc/learn-gin/controller"
 	"github.com/fajarbc/learn-gin/middleware"
+	"github.com/fajarbc/learn-gin/service"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
+)
+
+var (
+	articleService service.ArticleService = service.New()
+
+	articleController controller.ArticleController = controller.New(articleService)
 )
 
 func ApiRoutes(server *gin.Engine, db *gorm.DB) {

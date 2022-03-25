@@ -1,19 +1,8 @@
 package routes
 
 import (
-	"github.com/fajarbc/learn-gin/controller"
-	"github.com/fajarbc/learn-gin/service"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
-)
-
-var (
-	loginService   service.LoginService   = service.NewLoginService()
-	jwtService     service.JWTService     = service.NewJWTService()
-	articleService service.ArticleService = service.New()
-
-	loginController   controller.LoginController   = controller.NewLoginController(loginService, jwtService)
-	articleController controller.ArticleController = controller.New(articleService)
 )
 
 func SetupRoutes(db *gorm.DB) *gin.Engine {
@@ -24,6 +13,7 @@ func SetupRoutes(db *gorm.DB) *gin.Engine {
 	})
 
 	ApiRoutes(server, db)
+	AuthorRoutes(server, db)
 	LoginRoutes(server, db)
 	ViewRoutes(server, db)
 

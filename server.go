@@ -7,6 +7,7 @@ import (
 	"github.com/fajarbc/learn-gin/models"
 	"github.com/fajarbc/learn-gin/routes"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func setupLogOutput() {
@@ -18,6 +19,11 @@ func main() {
 	setupLogOutput()
 	db := models.ConnectDB()
 	models.AutoMigrateDB(db)
+
+	err := godotenv.Load(".env")
+	if err != nil {
+		panic("Can not load .env")
+	}
 
 	server := gin.New()
 
