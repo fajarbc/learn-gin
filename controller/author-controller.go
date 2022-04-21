@@ -31,7 +31,7 @@ func (controller *authorController) Login(ctx *gin.Context) (bool, string, model
 	isAuthenticated, message, author := controller.authorService.Login(db, credentials.Username, credentials.Password)
 	if isAuthenticated {
 		status = true
-		message = controller.jwtService.GenerateToken(credentials.Username, true)
+		message = controller.jwtService.GenerateToken(author.ID, credentials.Username, true)
 	}
 	return status, message, author
 }
@@ -40,11 +40,11 @@ func (controller *authorController) Register(ctx *gin.Context) (bool, string) {
 	var author models.Author
 	err := ctx.ShouldBindJSON(&author)
 	if err != nil {
-		return false, "error 1" //err.Error()
+		return false, err.Error()
 	}
 	err = validate.Struct(author)
 	if err != nil {
-		return false, "error 2" //err.Error()
+		return false, err.Error()
 	}
 	db := ctx.MustGet("db").(*gorm.DB)
 	isUsernameExist, existedAuthor := controller.authorService.FindByUsername(db, author.Username)

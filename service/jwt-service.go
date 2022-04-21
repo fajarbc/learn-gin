@@ -9,12 +9,13 @@ import (
 )
 
 type JWTService interface {
-	GenerateToken(name string, admin bool) string
+	GenerateToken(id int, name string, admin bool) string
 	ValidateToken(token string) (*jwt.Token, error)
 }
 
 // jwtCustomClaims are custom claims extending default claims by the lib
 type jwtCustomClaims struct {
+	ID    int    `json:"id"`
 	Name  string `json:"name"`
 	Admin bool   `json:"admin"`
 	jwt.StandardClaims
@@ -25,10 +26,11 @@ type jwtService struct {
 	issuer    string
 }
 
-func (service *jwtService) GenerateToken(username string, admin bool) string {
+func (service *jwtService) GenerateToken(id int, username string, admin bool) string {
 
 	// Set custom and standard claims
 	claims := &jwtCustomClaims{
+		id,
 		username,
 		admin,
 		jwt.StandardClaims{

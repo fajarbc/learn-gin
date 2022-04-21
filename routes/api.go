@@ -13,7 +13,7 @@ import (
 var (
 	articleService service.ArticleService = service.New()
 
-	articleController controller.ArticleController = controller.New(articleService)
+	articleController controller.ArticleController = controller.New(articleService, authorService)
 )
 
 func ApiRoutes(server *gin.Engine, db *gorm.DB) {

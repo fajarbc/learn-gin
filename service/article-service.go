@@ -28,15 +28,11 @@ func New() ArticleService {
 func (service *articleService) Save(ctx *gin.Context, article m.Article) m.Article {
 	service.articles = append(service.articles, article)
 	save := m.Article{
-		Title:   article.Title,
-		Content: article.Content,
-		Slug:    article.Slug,
-		Status:  article.Status,
-		Author: m.Author{
-			Name:   article.Author.Name,
-			Email:  article.Author.Email,
-			Status: article.Author.Status,
-		},
+		Title:     article.Title,
+		Content:   article.Content,
+		Slug:      article.Slug,
+		Status:    article.Status,
+		Author:    article.Author,
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 	}

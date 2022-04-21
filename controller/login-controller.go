@@ -23,7 +23,7 @@ func (controller *loginController) Login_(ctx *gin.Context) string {
 	}
 	isAuthenticated := controller.loginService.Login(credentials.Username, credentials.Password)
 	if isAuthenticated {
-		return controller.jwtService.GenerateToken(credentials.Username, true)
+		return controller.jwtService.GenerateToken(1, credentials.Username, true)
 	}
 	return ""
 }
