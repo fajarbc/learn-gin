@@ -14,6 +14,7 @@ import (
 type AuthorService interface {
 	Login(db *gorm.DB, username string, password string) (bool, string, models.Author)
 	Save(*gin.Context, models.Author) (bool, string)
+	FindByUsername(db *gorm.DB, username string) (bool, models.Author)
 }
 
 type authorService struct {
@@ -58,6 +59,17 @@ func (service *authorService) Save(ctx *gin.Context, author models.Author) (bool
 		return false, tx.Error.Error()
 	}
 	return true, "success"
+}
+
+func (service *authorService) FindByUsername(db *gorm.DB, username string) (bool, models.Author) {
+	var author models.Author
+	result := db.Where(&models.Author{
+		Username: username,
+	}).First((&author))
+	if result.RowsAffected > 0 {
+		return true, author
+	}
+	return false, models.Author{}
 }
 
 func NewAuthorService() AuthorService {

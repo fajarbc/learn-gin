@@ -1,6 +1,8 @@
 package controller
 
 import (
+	"strconv"
+
 	"github.com/fajarbc/learn-gin/dto"
 	"github.com/fajarbc/learn-gin/models"
 	"github.com/fajarbc/learn-gin/service"
@@ -43,6 +45,11 @@ func (controller *authorController) Register(ctx *gin.Context) (bool, string) {
 	err = validate.Struct(author)
 	if err != nil {
 		return false, "error 2" //err.Error()
+	}
+	db := ctx.MustGet("db").(*gorm.DB)
+	isUsernameExist, existedAuthor := controller.authorService.FindByUsername(db, author.Username)
+	if isUsernameExist {
+		return false, "Username exist (" + strconv.Itoa(existedAuthor.ID) + ")"
 	}
 	success, message := controller.authorService.Save(ctx, author)
 	return success, message
