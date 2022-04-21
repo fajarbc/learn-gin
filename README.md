@@ -22,10 +22,12 @@ An example of `POST` request to save new Article with its Author to http://local
 Make sure you are already authenticated, otherwise it will respond with 400.
 
 # install
-Before you could run the app, first install/downloads the dependecies first.
-```
-go mod download
-```
+Before you could run the app
+1. install/downloads the dependecies first.
+   ```
+   go mod download
+   ```
+2. make database `go_articles`
 
 # running
 There are 3 ways to run the app. Once it runs. You could reach `http://localhost:8080`
