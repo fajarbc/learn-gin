@@ -17,13 +17,13 @@ func setupLogOutput() {
 
 func main() {
 	setupLogOutput()
-	db := models.ConnectDB()
-	models.AutoMigrateDB(db)
-
 	err := godotenv.Load(".env")
 	if err != nil {
 		panic("Can not load .env")
 	}
+
+	db := models.ConnectDatabase()
+	models.AutoMigrateDatabase(db)
 
 	server := gin.New()
 
