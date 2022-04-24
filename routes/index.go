@@ -14,7 +14,6 @@ func SetupRoutes(db *gorm.DB) *gin.Engine {
 
 	ApiRoutes(server, db)
 	AuthorRoutes(server, db)
-	LoginRoutes(server, db)
 	ViewRoutes(server, db)
 
 	return server

@@ -14,3 +14,8 @@ type Author struct {
 	CreatedAt time.Time `json:"created_at" gorm:"autoCreateTime"`
 	UpdatedAt time.Time `json:"updated_at" gorm:"autoUpdateTime"`
 }
+
+type AuthorLogin struct {
+	Username string `form:"username"`
+	Password string `form:"password"`
+}

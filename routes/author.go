@@ -9,9 +9,8 @@ import (
 	"gorm.io/gorm"
 )
 
-// already declared in login.go
-// 	jwtService   service.JWTService   = service.NewJWTService()
 var (
+	jwtService    service.JWTService    = service.NewJWTService()
 	authorService service.AuthorService = service.NewAuthorService()
 
 	authorContoller controller.AuthorController = controller.NewAuthorController(authorService, jwtService)

@@ -3,7 +3,6 @@ package controller
 import (
 	"strconv"
 
-	"github.com/fajarbc/learn-gin/dto"
 	"github.com/fajarbc/learn-gin/models"
 	"github.com/fajarbc/learn-gin/service"
 	"github.com/gin-gonic/gin"
@@ -21,17 +20,17 @@ type authorController struct {
 }
 
 func (controller *authorController) Login(ctx *gin.Context) (bool, string, models.Author) {
-	var credentials dto.Credentials
+	var authorLogin models.AuthorLogin
 	status := false
-	err := ctx.ShouldBind(&credentials)
+	err := ctx.ShouldBind(&authorLogin)
 	if err != nil {
 		return status, err.Error(), models.Author{}
 	}
 	db := ctx.MustGet("db").(*gorm.DB)
-	isAuthenticated, message, author := controller.authorService.Login(db, credentials.Username, credentials.Password)
+	isAuthenticated, message, author := controller.authorService.Login(db, authorLogin.Username, authorLogin.Password)
 	if isAuthenticated {
 		status = true
-		message = controller.jwtService.GenerateToken(author.ID, credentials.Username, true)
+		message = controller.jwtService.GenerateToken(author.ID, authorLogin.Username, true)
 	}
 	return status, message, author
 }
