@@ -1,6 +1,6 @@
 # Learn Gin Framework (Golang)
 
-## Descrition
+## Description
 Learning golang framework gin.
 Implements:
    - Gin
@@ -14,7 +14,7 @@ There is nothing in http://localhost:8080 yet, but you can do :
 
 Use Postman for completes endpoints: https://www.getpostman.com/collections/e66fcfef85e70524e3ac
 
-## Endpoint examples 
+## Endpoint examples
 An example of `POST` request to save new Article with its Author to http://localhost:8080/api/articles 
 ```json
 {
