@@ -2,6 +2,11 @@
 
 ## Description
 Learning golang framework gin.
+Stack:
+   - Go
+   - MySQL
+   - Docker
+
 Implements:
    - Gin
    - Gorm MySQL CRUD (currently: create, read)
@@ -73,7 +78,7 @@ Then, before you could run the app
          ```
       Note: `~` equals `C:\Users\fajarbc`
    3. Check in your terminal by type ```air -v```
-
+4. Don't forget to setup your env by copy file `.env.example` and rename it to `.env` and then you can start to change the variables inside it.
 
 ## Run
 There are 4 ways to run the app. Once it runs, you could reach `http://localhost:8080`
